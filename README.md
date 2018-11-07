@@ -1,2 +1,2 @@
-# SPOJ
-Practice SPOJ problems with name as problem code and a hint of algorithm used
+# Data Structures and Algorithms
+Some classical problems and Competitive programming questions on judges like SPOJ
