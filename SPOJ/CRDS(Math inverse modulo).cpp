@@ -15,6 +15,12 @@
             return gcd
         }
     3. If M is not prime and a and M are not coprime, inverse wont exist
+
+    THIS ALL WAS DONE because simple formula for Nth level is (3N^2 + N)/2
+    else
+    can be solved using dp
+    dp[i] = (3*N-1) + d[i-1]
+    
 */
 #include <bits/stdc++.h>
 using namespace std;
