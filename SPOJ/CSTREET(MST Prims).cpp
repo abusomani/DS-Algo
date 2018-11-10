@@ -8,23 +8,6 @@
     priority_queue < int, vector<int> , greater<int> >
     Push {distance, node} in PQ and store visited, and distance
 
-    Sample graph from : https://www.geeksforgeeks.org/prims-minimum-spanning-tree-mst-greedy-algo-5/
-9 14
-1 2 4
-1 8 8
-2 8 11
-2 3 8
-3 4 7
-3 9 2
-3 6 4
-4 5 9
-4 6 14
-5 6 10
-6 7 2
-7 8 1
-7 9 6
-8 9 7
-
 */
 #include <bits/stdc++.h>
 using namespace std;
@@ -37,7 +20,7 @@ using namespace std;
 typedef long long ll;
 const ll MOD = 1000000007;
 const ll INF = 1e18;
-const ll MAX_SIZE = 100005;
+const ll MAX_SIZE = 1005;
 
 vector<pair<ll, ll>> G[MAX_SIZE]; // Adjacency list contains, to which node present node is connected and the cost for it
 bool visited[MAX_SIZE];
@@ -94,24 +77,26 @@ int main()
     fastio;
     //freopen('input.txt','r',stdin);
     //freopen('output.txt','w',stdout);
-    preprocess();
-
-    ll N, M; // N nodes and M edges
-    cin >> N >> M;
-
-    // UNDIRECTED GRAPH LOGIC
-    ll a, b, c;
-    for (int i = 0; i < M; i++)
+    ll T;
+    cin >> T;
+    while (T--)
     {
-        cin >> a >> b >> c;
-        G[a].push_back({b, c});
-        G[b].push_back({a, c});
+        preprocess();
+
+        ll Cst, N, M; // N nodes and M edges
+        cin >> Cst >> N >> M;
+
+        // UNDIRECTED GRAPH LOGIC
+        ll a, b, c;
+        for (int i = 0; i < M; i++)
+        {
+            cin >> a >> b >> c;
+            G[a].push_back({b, c});
+            G[b].push_back({a, c});
+        }
+
+        cout << Cst * prim(1, N) << endl;
     }
-
-    cout << "MST Cost is : " << prim(1, N) << endl;
-
-    for (int i = 1; i <= N; i++)
-        cout << "Parent of " << i << " is : " << parent[i] << endl;
 
     return 0;
 }
