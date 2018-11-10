@@ -1,5 +1,9 @@
 //Sometimes I feel like giving up, then I remember I have a lot of motherfuckers to prove wrong!
 //@BEGIN OF SOURCE CODE ( By Abhishek Somani)
+/*
+    Number whose cube ends with 888
+    192 + (k-1)*250
+*/
 #include <bits/stdc++.h>
 using namespace std;
 

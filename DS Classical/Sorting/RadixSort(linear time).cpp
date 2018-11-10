@@ -1,17 +1,5 @@
 //Sometimes I feel like giving up, then I remember I have a lot of motherfuckers to prove wrong!
 //@BEGIN OF SOURCE CODE ( By Abhishek Somani)
-/*
-    RADIX SORT implementation is :
-    find the element with max number of digits. That would be the number of passes
-    for each pass from i = 1 to K ( where K is number of digits in max element)
-        for each number in array
-            1. mod the number with 10^digit
-            2. divide the number by 10^(digit-1)
-
-        This is done to get the bucket the number should go.
-        Merge the buckets.
-
-*/
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -22,10 +10,11 @@ using namespace std;
 
 typedef long long ll;
 const ll MOD = 1000000007;
+
 const ll MAX_SIZE = 20000005;
 
 ll arr[MAX_SIZE];
-ll N, a, b, X1;
+ll N;
 
 ll getMaxElement()
 {
@@ -48,10 +37,18 @@ ll power(ll a, ll b)
     return ans;
 }
 
-void countingSort(ll digits)
+void countingSort(ll digitNumber)
 {
     vector<ll> V[10];
-    ll divideWith = power(10, digits - 1);
+
+    /*
+        If a number N  is ABCDEFGH
+        Getting the digit C means
+        N %= pow(10,digitNumber)
+        N /= pow(10, digitNumber - 1)
+    */
+
+    ll divideWith = power(10, digitNumber - 1);
     ll modWith = 10 * divideWith;
 
     for (int i = 1; i <= N; i++)
@@ -84,22 +81,21 @@ int main()
     fastio;
     //freopen('input.txt','r',stdin);
     //freopen('output.txt','w',stdout);
+    arr[0] = -1;
     ll T;
     cin >> T;
     while (T--)
     {
-        cin >> N >> a >> b >> X1;
-        arr[1] = X1;
+        cin >> N;
 
-        for (int i = 2; i <= N; i++)
-            arr[i] = ((arr[i - 1] * a) % MOD + b) % MOD;
+        for (int i = 1; i <= N; i++)
+            cin >> arr[i];
 
         radixSort();
 
-        ll result = 0;
         for (int i = 1; i <= N; i++)
-            result = (result + (arr[i] * i) % MOD) % MOD;
-        cout << result << endl;
+            cout << arr[i] << " ";
+        cout << endl;
     }
     return 0;
 }
