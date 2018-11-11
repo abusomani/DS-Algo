@@ -11,28 +11,6 @@ using namespace std;
 typedef long long ll;
 const ll MOD = 1000000007;
 
-void prettyPrint(string s)
-{
-    for (int i = 0; i < 2; i++)
-        cout << s[i];
-    cout << " ";
-    for (int i = 2; i < 10; i++)
-        cout << s[i];
-    cout << " ";
-    for (int i = 10; i < 14; i++)
-        cout << s[i];
-    cout << " ";
-    for (int i = 14; i < 18; i++)
-        cout << s[i];
-    cout << " ";
-    for (int i = 18; i < 22; i++)
-        cout << s[i];
-    cout << " ";
-    for (int i = 22; i < 26; i++)
-        cout << s[i];
-    cout << " ";
-}
-
 int main()
 {
     fastio;
@@ -42,32 +20,25 @@ int main()
     cin >> T;
     while (T--)
     {
+        cin.ignore();
+
         ll N, K;
         cin >> N;
-        multimap<string, ll> MM;
+        string str;
+
+        cin.ignore(); // to use getline, flush the newline
+
+        map<string, ll> MM;
         MM.clear();
         for (int i = 0; i < N; i++)
         {
-            string s = "", x;
-            for (int j = 0; j < 6; j++)
-                cin >> x, s += x;
-            if (MM.find(s) != MM.end())
-            {
-                multimap<string, ll>::iterator it = MM.find(s);
-                pair<string, ll> P = *it;
-                MM.erase(it);
-                MM.insert(make_pair(P.first, P.second + 1));
-            }
-            else
-            {
-                MM.insert(make_pair(s, 1));
-            }
+            getline(cin, str);
+            MM[str]++;
         }
-
-        for (multimap<string, ll>::iterator it = MM.begin(); it != MM.end(); it++)
+        for (map<string, ll>::iterator it = MM.begin(); it != MM.end(); it++)
         {
             pair<string, ll> P = *it;
-            prettyPrint(P.first);
+            cout << P.first << " "; // if getline is used, cout will print with spaces
             cout << P.second << endl;
         }
     }
