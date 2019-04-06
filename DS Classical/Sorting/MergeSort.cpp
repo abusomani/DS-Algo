@@ -16,7 +16,7 @@ void merge(ll arr[], ll low, ll mid, ll high)
     vector<ll> A, B;
     for (int i = low; i <= mid; i++)
         A.push_back(arr[i]);
-    for (int i = mid + 1; i < high; i++)
+    for (int i = mid + 1; i <= high; i++)
         B.push_back(arr[i]);
 
     int i = 0, j = 0, k = low;
