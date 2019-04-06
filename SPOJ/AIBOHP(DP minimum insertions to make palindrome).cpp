@@ -37,13 +37,15 @@ string str;
 ll minInsertToPalin(ll l, ll r) // RECURSIVE SOLUTION
 {
     if (l >= str.size() or r < 0)
-        return 0;
+        return dp[l][r] = 0;
     if (l == r) // if only one character that means it is a palindrome so nothing to insert
-        return 0;
+        return dp[l][r] = 0;
+    if (dp[l][r] != MOD)
+        return dp[l][r];
     if (str[l] == str[r])
-        return minInsertToPalin(l + 1, r - 1);
+        return dp[l][r] = minInsertToPalin(l + 1, r - 1);
     else
-        return (1 + min(minInsertToPalin(l, r - 1), minInsertToPalin(l + 1, r)));
+        return dp[l][r] = (1 + min(minInsertToPalin(l, r - 1), minInsertToPalin(l + 1, r)));
 }
 
 ll minInsertDP()
@@ -71,6 +73,13 @@ ll minInsertDP()
     return dp[0][str.size() - 1];
 }
 
+void init()
+{
+    for (int i = 0; i < MAX_SIZE; i++)
+        for (int j = 0; j < MAX_SIZE; j++)
+            dp[i][j] = MOD;
+}
+
 int main()
 {
     fastio;
@@ -80,9 +89,11 @@ int main()
     cin >> T;
     while (T--)
     {
-        memset(dp, INT_MAX, sizeof(dp));
+        init();
         cin >> str;
-        cout << minInsertDP() << endl;
+        // cout << minInsertDP() << endl;
+        // init();
+        cout << minInsertToPalin(0, str.size() - 1) << endl;
     }
     return 0;
 }
